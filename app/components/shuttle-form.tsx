@@ -1,6 +1,6 @@
 "use client";
 
-import { BACKEND_DOMAIN, COURTS, LoadingState, NewBookingData } from "@smash/common";
+import { COURTS, LoadingState, NewBookingData } from "@smash/common";
 import axios from "axios";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
@@ -63,7 +63,7 @@ export default function ShuttleForm({ email }: { email: string }) {
   useEffect(() => {
     const fn = async () => {
       const balance = (
-        await axios.get(`${BACKEND_DOMAIN}/api/balance/${email}`)
+        await axios.get(`/api/balance/${email}`)
       ).data.data.balance;
       setBalance(balance);
     };
@@ -128,7 +128,7 @@ export default function ShuttleForm({ email }: { email: string }) {
       setLoadingState(LoadingState.Loading);
       const availableHours = (
         await axios.get(
-          `${BACKEND_DOMAIN}/api/available-hours/${court}/${date}`
+          `/api/available-hours/${court}/${date}`
         )
       ).data.data.availableHours;
       setAvailableHours(availableHours);
@@ -143,7 +143,7 @@ export default function ShuttleForm({ email }: { email: string }) {
     console.log("data -", data);
     if (Object.values(data).some((v) => !v)) return;
     console.log("yo");
-    await axios.post(`${BACKEND_DOMAIN}/api/new-booking`, data);
+    await axios.post(`/api/new-booking`, data);
     router.replace("/home/bookings");
   }, [court, date, startHour, duration]);
 
