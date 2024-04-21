@@ -2,6 +2,8 @@
 
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
+export const BACKEND_DOMAIN = "https://smash-teal.vercel.app";
+
 export type User = {
 	email: string;
 	pwd_hash: string;

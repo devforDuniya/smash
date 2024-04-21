@@ -1,6 +1,6 @@
 "use client";
 
-import { Booking, LoadingState } from "@smash/common";
+import { BACKEND_DOMAIN, Booking, LoadingState } from "@smash/common";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
@@ -21,7 +21,7 @@ export default function Bookings({ email }: { email: string }) {
     const fn = async () => {
       console.log("email", email);
       const bookings = (
-        await axios.get(`http://localhost:3000/api/bookings/${email}`)
+        await axios.get(`${BACKEND_DOMAIN}/api/bookings/${email}`)
       ).data.data.bookings;
       console.log(bookings);
       setBookings(bookings);

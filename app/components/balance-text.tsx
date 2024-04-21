@@ -1,5 +1,6 @@
 "use client";
 
+import { BACKEND_DOMAIN } from "@smash/common";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
@@ -9,7 +10,7 @@ export default function BalanceText({ email }: { email: string }) {
   useEffect(() => {
     const fn = async () => {
       const balance = (
-        await axios.get(`http://localhost:3000/api/balance/${email}`)
+        await axios.get(`${BACKEND_DOMAIN}/api/balance/${email}`)
       ).data.data.balance;
       setBalance(balance);
     };
